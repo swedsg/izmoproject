@@ -1,0 +1,29 @@
+create table movie(
+movie_id int(20),
+movie_name varchar(50) not null unique,
+movie_desc varchar(500) not null,
+release_date date not null,
+duration int(3) not null check(duration > 60),
+cover_photo_url varchar(500) not null,
+trailer_url varchar(500) not null,
+primary key(id)
+);
+
+
+create table theatre(
+id int(20),
+theatre_name varchar(20) not null unique,
+city_name varchar(20) not null,
+ticket_price int not null default 150,
+primary key(id)
+);
+
+
+truncate table offer;
+
+create table movie_theatre(
+movie_id int(20),
+theatre_id int(20),
+foreign key(movie_id) references movie(movie_id),
+foreign key(theatre_id) references theatre(theatre_id)
+);
